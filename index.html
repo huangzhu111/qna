@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>记忆故事问答</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 记忆故事问答</h1>
+            <p class="subtitle">每天练习一小步，记忆力棒棒的！</p>
+        </header>
+
+        <main id="app">
+            <!-- 开始界面 -->
+            <section id="start-screen" class="screen active">
+                <div class="welcome-card">
+                    <div class="icon">📖</div>
+                    <h2>欢迎来听故事！</h2>
+                    <p>点击下方按钮，我会给你讲一个小故事，然后问你几个问题。</p>
+                    <button id="start-btn" class="btn btn-primary btn-large">
+                        ▶️ 开始听故事
+                    </button>
+                </div>
+                
+                <div class="history-card">
+                    <h3>📊 历史记录</h3>
+                    <div id="history-list">
+                        <p class="empty">暂无记录</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 故事界面 -->
+            <section id="story-screen" class="screen">
+                <div class="story-card">
+                    <h2>📝 故事内容</h2>
+                    <div id="story-content" class="story-text">
+                        <p class="loading">正在生成故事...</p>
+                    </div>
+                    <div class="audio-controls">
+                        <button id="play-story-btn" class="btn btn-secondary">
+                            🔊 播放故事
+                        </button>
+                    </div>
+                </div>
+                <button id="to-questions-btn" class="btn btn-primary btn-large">
+                    听完了，去答题 →
+                </button>
+            </section>
+
+            <!-- 答题界面 -->
+            <section id="questions-screen" class="screen">
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="question-number">问题 <span id="q-num">1</span>/3</span>
+                    </div>
+                    <h2 id="question-text" class="question-text">问题内容</h2>
+                    
+                    <div class="record-controls">
+                        <button id="record-btn" class="btn btn-record">
+                            🎤 按住录音
+                        </button>
+                        <p class="record-hint">按住按钮说话，说完松开</p>
+                    </div>
+
+                    <div id="answer-display" class="answer-display hidden">
+                        <p>你说的是：<span id="answer-text">...</span></p>
+                    </div>
+                </div>
+
+                <div class="question-nav">
+                    <button id="next-q-btn" class="btn btn-primary btn-large" disabled>
+                        下一题 →
+                    </button>
+                </div>
+            </section>
+
+            <!-- 结果界面 -->
+            <section id="result-screen" class="screen">
+                <div class="result-card">
+                    <div class="score-circle">
+                        <span id="score">0</span>
+                        <span class="score-label">分</span>
+                    </div>
+                    <h2 id="result-message">太棒了！</h2>
+                    <div class="result-details">
+                        <p>回答正确：<span id="correct-count">0</span>/3</p>
+                    </div>
+                    <button id="play-result-btn" class="btn btn-secondary">
+                        🔊 播放结果
+                    </button>
+                </div>
+                <button id="restart-btn" class="btn btn-primary btn-large">
+                    🔄 再听一个新故事
+                </button>
+            </section>
+
+            <!-- 加载状态 -->
+            <div id="loading-overlay" class="loading-overlay hidden">
+                <div class="spinner"></div>
+                <p id="loading-text">加载中...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
