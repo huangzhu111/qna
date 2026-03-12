@@ -59,15 +59,16 @@
                     </div>
                     <h2 id="question-text" class="question-text">问题内容</h2>
                     
-                    <div class="record-controls">
-                        <button id="record-btn" class="btn btn-record">
-                            🎤 按住录音
-                        </button>
-                        <p class="record-hint">按住按钮说话，说完松开</p>
+                    <!-- 选择按钮 -->
+                    <div class="options-container">
+                        <button class="option-btn" data-option="A">A</button>
+                        <button class="option-btn" data-option="B">B</button>
                     </div>
+                    
+                    <p class="record-hint">点击 A 或 B 选择答案</p>
 
                     <div id="answer-display" class="answer-display hidden">
-                        <p>你说的是：<span id="answer-text">...</span></p>
+                        <p>你的选择：<span id="answer-text">...</span></p>
                     </div>
                 </div>
 
