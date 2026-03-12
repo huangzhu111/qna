@@ -136,28 +136,16 @@
     }
 
     async function playStory() {
-        if (state.audioUrl) {
-            // 已有音频，直接播放
-            const audio = new Audio(state.audioUrl);
-            await audio.play();
-            return;
-        }
-        
-        showLoading('正在生成语音...');
+        showLoading('正在播放语音...');
         elements.playStoryBtn.disabled = true;
         
         try {
-            const audioUrl = await textToSpeech(state.story);
-            state.audioUrl = audioUrl;
-            
-            const audio = new Audio(audioUrl);
-            audio.onended = () => {
-                elements.playStoryBtn.textContent = '🔊 重新播放';
-                elements.playStoryBtn.disabled = false;
-            };
-            await audio.play();
+            // 使用浏览器自带语音合成
+            await textToSpeech(state.story);
+            elements.playStoryBtn.textContent = '🔊 重新播放';
+            elements.playStoryBtn.disabled = false;
         } catch (error) {
-            alert('语音生成失败: ' + error.message);
+            alert('语音播放失败: ' + error.message);
             elements.playStoryBtn.textContent = '🔊 播放故事';
             elements.playStoryBtn.disabled = false;
         } finally {
@@ -400,12 +388,11 @@
             message = '别灰心，慢慢来！你答对了' + state.correctCount + '道题。';
         }
         
-        showLoading('正在生成语音...');
+        showLoading('正在播放语音...');
         
         try {
-            const audioUrl = await textToSpeech(message);
-            const audio = new Audio(audioUrl);
-            await audio.play();
+            // 使用浏览器自带语音合成
+            await textToSpeech(message);
         } catch (error) {
             alert('语音播放失败: ' + error.message);
         } finally {
